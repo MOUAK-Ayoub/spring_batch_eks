@@ -1,0 +1,15 @@
+spring:
+  batch:
+    job.enabled: false
+
+  # Database
+  datasource:
+    driverClassName : org.postgresql.Driver
+    url: jdbc:postgresql://0f88dd97a31c.mylabserver.com:5432/test
+    username: postgres
+    password: test
+
+  jobs:
+    jobCsv:
+      filename: classpath:test.csv
+
