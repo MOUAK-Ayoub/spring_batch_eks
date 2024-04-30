@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-    stage('Cleaning the project') {
+         stage('env variables') {
 
                     steps {
                         sh "echo $JAVA_HOME"
