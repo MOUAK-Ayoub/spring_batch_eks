@@ -7,7 +7,6 @@ pipeline {
                     steps {
                         sh "echo $JAVA_HOME"
                         sh "echo $MAVEN_HOME"
-                        sh "echo $M2_HOME"
 
                     }
             }
