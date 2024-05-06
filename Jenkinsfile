@@ -19,13 +19,12 @@ pipeline {
             steps {
                 rtServer id: "server", url: "http://localhost:8082/artifactory/", credentialsId: "token"
                 rtMavenDeployer id: "deployer", serverId: "server", releaseRepo: "spring_batch",  snapshotRepo: "spring_batch"
-                rtMavenResolver id: "resolver", serverId: "server", releaseRepo: "spring_batch", snapshotRepo: "spring_batch"
             }
         }
 
         stage ('Build artifact') {
             steps {
-                rtMavenRun pom: 'pom.xml', goals: 'clean install', deployerId: "deployer", resolverId: "resolver"
+                rtMavenRun pom: 'pom.xml', goals: 'clean install', deployerId: "deployer"
             }
         }
 
