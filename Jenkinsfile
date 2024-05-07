@@ -8,16 +8,19 @@ pipeline {
          stage('env variables') {
 
             steps {
+                def artifactory_url="http://localhost:8082/artifactory/"
+                def pom_version=readMavenPom file: pom.xml
                 sh "echo $JAVA_HOME"
                 sh "echo $MAVEN_HOME"
                 sh " java -version"
                 sh " mvn -version"
+                sh " echo ${pom_version}"
             }
          }
 
         stage ('Artifactory configuration') {
             steps {
-                rtServer id: "server", url: "http://localhost:8082/artifactory/", credentialsId: "token"
+                rtServer id: "server", url: artifactory_url , credentialsId: "token"
                 rtMavenDeployer id: "deployer", serverId: "server", releaseRepo: "spring_batch",  snapshotRepo: "spring_batch"
             }
         }
@@ -31,8 +34,8 @@ pipeline {
        stage('Build docker image'){
            steps{
                 sh """
-                    docker build -t demo:0.0.1-SNAPSHOT .
-                    docker push ayoubmouak/demo:0.0.1-SNAPSHOT
+                    docker build -t demo:${pom_version} .
+                    docker push ayoubmouak/demo:${pom_version}
                 """
            }
         }
