@@ -1,0 +1,6 @@
+1.To Test in a browser :
+http://public_ip:31582/jobs/jobCsv
+http://public_ip:31582/h2-console
+
+
+

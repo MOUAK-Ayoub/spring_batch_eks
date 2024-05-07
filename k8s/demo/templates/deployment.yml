@@ -1,3 +1,9 @@
+
+
+
+---
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +24,7 @@ spec:
         app: demo
     spec:
       containers:
-        - image: docker.io/ayoubmouak/demo:0.0.1-SNAPSHOT # {"$imagepolicy": "default:demo"}
+        - image: docker.io/ayoubmouak/demo:{{.Values.deployment.image.version}} # {"$imagepolicy": "default:demo"}
           name: demo
           ports:
             - containerPort: 8082
@@ -27,16 +33,3 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: app-service
-spec:
-  selector:
-    app: demo
-  ports:
-    - port: 80
-      targetPort: 8082
-  type: LoadBalancer
