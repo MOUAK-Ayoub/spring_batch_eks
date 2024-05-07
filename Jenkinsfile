@@ -31,7 +31,8 @@ pipeline {
        stage('Build docker image'){
            steps{
                 sh """
-
+                    docker build -t demo:0.0.1-SNAPSHOT .
+                    docker push ayoubmouak/demo:0.0.1-SNAPSHOT
                 """
            }
         }
