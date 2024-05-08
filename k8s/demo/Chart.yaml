@@ -1,6 +1,6 @@
 apiVersion: v2
 name: my-demo
-appVersion: "1.3"
+appVersion: "0.0.1"
 description: A Helm chart for demo
 version: 0.0.1
 type: application
