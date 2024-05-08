@@ -10,8 +10,6 @@ pipeline {
             steps {
                 def artifactory_url="http://localhost:8082/artifactory/"
                 def pom_version=readMavenPom file: pom.xml
-                sh "echo $JAVA_HOME"
-                sh "echo $MAVEN_HOME"
                 sh " java -version"
                 sh " mvn -version"
                 sh " echo ${pom_version}"
@@ -36,6 +34,14 @@ pipeline {
                 sh """
                     docker build -t demo:${pom_version} .
                     docker push ayoubmouak/demo:${pom_version}
+                """
+           }
+        }
+
+        stage('Helm install'){
+           steps{
+                sh """
+                    helm install my-demo demo
                 """
            }
         }
