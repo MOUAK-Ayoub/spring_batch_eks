@@ -26,6 +26,7 @@ flux create helmrelease demo-from-git \
   --source=GitRepository/demo-chart \
   --chart=./k8s/demo \
   --namespace=default \
+  --reconcile-strategy=Revision \
   --export > helmreleases/demo-helmrelease.yaml
 
 cd helmreleases
