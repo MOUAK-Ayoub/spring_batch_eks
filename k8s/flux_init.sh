@@ -1,6 +1,6 @@
 flux bootstrap github --token-auth \
 --owner=MOUAK-Ayoub --repository=flux-apps \
---personal  --branch=main --reconcile --private=false  \
+--personal  --branch=master --reconcile --private=false  \
 --components-extra=image-reflector-controller,image-automation-controller
 
 
@@ -14,7 +14,7 @@ flux create source git  demo-chart \
    --branch=master \
    --namespace=default \
    --username=ayoub.mouak.2015@gmail.com \
-   --password=$GITHUB_TOKEN \
+   --password="$GITHUB_TOKEN" \
    --export > sources/demo-chart.yaml
 
 cd sources
@@ -28,6 +28,8 @@ flux create helmrelease demo-from-git \
   --namespace=default \
   --reconcile-strategy=Revision \
   --export > helmreleases/demo-helmrelease.yaml
+
+
 
 cd helmreleases
 kustomize create --autodetect --recursive
