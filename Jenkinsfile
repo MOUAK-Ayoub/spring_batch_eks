@@ -35,7 +35,7 @@ pipeline {
                     sh """
                       git add .
                       git commit -m "commit pom with next snapshot"
-                      git push
+                      git push origin master
                     """
                 }
             }
@@ -61,11 +61,14 @@ pipeline {
                   value_yaml = readYaml text: k8s/demo/values.yaml
                   value_yaml.deployment.image.version=pom_version
                }
-                sh """
-                  git add .
-                  git commit -m "commit helmrelease with next snapshot"
-                  git push origin HEAD:master
-                """
+                withCredentials([gitUsernamePassword(credentialsId: 'github')]) {
+                    sh """
+                      git add .
+                      git commit -m "commit helmrelease with next snapshot"
+                      git push origin master
+                    """
+                }
+
            }
        }
 
