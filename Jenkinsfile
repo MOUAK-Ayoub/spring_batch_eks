@@ -30,11 +30,14 @@ pipeline {
             steps {
                 rtMavenRun pom: 'pom.xml', goals: 'versions:set -DnextSnapshot -DprocessDependencies=false', deployerId: "deployer"
                 rtMavenRun pom: 'pom.xml', goals: 'clean install', deployerId: "deployer"
-                sh """
-                  git add .
-                  git commit -m "commit pom with next snapshot"
-                  git push origin HEAD:master
-                """
+
+                withCredentials([usernamePassword(credentialsId: 'github')]) {
+                    sh """
+                      git add .
+                      git commit -m "commit pom with next snapshot"
+                      git push origin HEAD:master
+                    """
+                }
             }
         }
 
