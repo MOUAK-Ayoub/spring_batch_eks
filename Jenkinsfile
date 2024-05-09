@@ -33,7 +33,7 @@ pipeline {
                 sh """
                   git add .
                   git commit -m "commit pom with next snapshot"
-                  git push
+                  git push origin HEAD:master
                 """
             }
         }
@@ -61,7 +61,7 @@ pipeline {
                 sh """
                   git add .
                   git commit -m "commit helmrelease with next snapshot"
-                  git push
+                  git push origin HEAD:master
                 """
            }
        }
