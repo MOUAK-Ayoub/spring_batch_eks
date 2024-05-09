@@ -1,4 +1,3 @@
-
 deployment:
   image:
-    version: "0.0.1-SNAPSHOT"
+    version: 0.0.18-SNAPSHOT
