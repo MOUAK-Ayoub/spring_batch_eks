@@ -1,7 +1,7 @@
 # export GITHUB_TOKEN
 flux bootstrap github --token-auth \
 --owner=MOUAK-Ayoub --repository=flux-apps \
---personal  --branch=master --reconcile --private=false  \
+--personal  --branch=main --reconcile --private=false  \
 --components-extra=image-reflector-controller,image-automation-controller
 
 
