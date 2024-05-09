@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                      artifactory_url="http://localhost:8082/artifactory/"
-                     pom_version=readMavenPom("pom.xml").getVersion()
+                     pom_version=readMavenPom(file: "pom.xml").getVersion()
                 }
 
                 sh " mvn -version"
