@@ -57,8 +57,8 @@ pipeline {
        stage('Helm install'){
            steps{
                script{
-                          value_yaml = readYaml text: k8s/demo/values.yaml
-                          value_yaml.deployment.image.version=pom_version
+                  value_yaml = readYaml text: k8s/demo/values.yaml
+                  value_yaml.deployment.image.version=pom_version
                }
                 sh """
                   git add .
