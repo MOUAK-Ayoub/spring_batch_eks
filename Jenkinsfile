@@ -48,9 +48,9 @@ pipeline {
                     pom_version=readMavenPom(file: "pom.xml").getVersion()
                 }
                 sh """
-                    sudo podman build -t demo:${pom_version} .
-                    sudo podman tag demo:${pom_version} docker.io/ayoubmouak/demo:${pom_version}
-                    sudo podman push docker.io/ayoubmouak/demo:${pom_version}
+                     podman build -t demo:${pom_version} .
+                     podman tag demo:${pom_version} docker.io/ayoubmouak/demo:${pom_version}
+                     podman push docker.io/ayoubmouak/demo:${pom_version}
                 """
            }
        }
