@@ -60,7 +60,7 @@ pipeline {
                script{
                   value_yaml = readYaml file: "k8s/demo/values.yaml"
                   value_yaml.deployment.image.version=pom_version
-                  writeYaml file: "k8s/demo/values.yaml"
+                  writeYaml file: "k8s/demo/values.yaml", overwrite: true
 
                }
                 withCredentials([gitUsernamePassword(credentialsId: 'github')]) {
