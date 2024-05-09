@@ -9,8 +9,8 @@ pipeline {
          stage('env variables') {
 
             steps {
-                def artifactory_url="http://localhost:8082/artifactory/"
-                def pom_version=readMavenPom file: pom.xml
+                artifactory_url="http://localhost:8082/artifactory/"
+                pom_version=readMavenPom file: pom.xml
                 sh " java -version"
                 sh " mvn -version"
                 sh " echo ${pom_version}"
@@ -49,7 +49,7 @@ pipeline {
 
        stage('Helm install'){
            steps{
-                def value_yaml = readYaml text: k8s/demo/values.yaml
+                value_yaml = readYaml text: k8s/demo/values.yaml
                 value_yaml.deployment.image.version=pom_version
                 sh """
                   git add .
