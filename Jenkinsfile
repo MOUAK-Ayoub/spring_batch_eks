@@ -15,7 +15,7 @@ pipeline {
                 }
 
                 sh " mvn -version"
-                echo pom_version
+                echo ${pom_version}
             }
          }
 
