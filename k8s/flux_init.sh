@@ -1,3 +1,4 @@
+# export GITHUB_TOKEN
 flux bootstrap github --token-auth \
 --owner=MOUAK-Ayoub --repository=flux-apps \
 --personal  --branch=master --reconcile --private=false  \

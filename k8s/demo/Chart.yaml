@@ -1,6 +1,6 @@
 apiVersion: v2
-name: my-demo
+name: my-spring-batch
 appVersion: "0.0.1"
-description: A Helm chart for demo
+description: A Helm chart for spring batch on k8s
 version: 0.0.1
 type: application

@@ -1,5 +1,5 @@
 # we will use openjdk 8 with alpine as it is a very small linux distro
-FROM openjdk:8-jre-alpine3.9
+FROM docker.io/openjdk:8-jre-alpine3.9
 
 # Expose port for rest calls
 EXPOSE 8082
