@@ -4,11 +4,14 @@ pipeline {
         maven "Maven 3.8.5"
     }
 
+    environment {
+         artifactory_url="http://localhost:8082/artifactory/"
+         pom_version=readMavenPom file: pom.xml
+    }
     stages {
 
          stage('env variables') {
-                artifactory_url="http://localhost:8082/artifactory/"
-                pom_version=readMavenPom file: pom.xml
+
             steps {
 
                 sh " java -version"
@@ -37,7 +40,10 @@ pipeline {
         }
 
        stage('Build docker image'){
-           pom_version= readMavenPom file: pom.xml
+           environment{
+                      pom_version= readMavenPom file: pom.xml
+
+           }
            steps{
                 sh """
                     podman build -t demo:${pom_version} .
