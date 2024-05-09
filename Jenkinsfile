@@ -35,7 +35,7 @@ pipeline {
                     sh """
                       git add .
                       git commit -m "commit pom with next snapshot"
-                      git push origin HEAD:master
+                      git push
                     """
                 }
             }
