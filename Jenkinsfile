@@ -16,7 +16,7 @@ pipeline {
 
                 sh " java -version"
                 sh " mvn -version"
-                sh " echo ${pom_version}"
+                echo pom_version
             }
          }
 
