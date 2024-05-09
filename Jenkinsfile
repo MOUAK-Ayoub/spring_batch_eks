@@ -45,7 +45,7 @@ pipeline {
 
            steps{
                 script{
-                    pom_version= readMavenPom file: pom.xml
+                    pom_version=readMavenPom(file: "pom.xml").getVersion()
                 }
                 sh """
                     podman build -t demo:${pom_version} .
