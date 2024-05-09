@@ -28,7 +28,7 @@ pipeline {
 
         stage ('Build artifact') {
             steps {
-                rtMavenRun pom: 'pom.xml', goals: 'versions:set -DnextSnapshot -DprocessDependencies=false', deployerId: "deployer"
+                rtMavenRun pom: 'pom.xml', goals: 'versions:set -DnextSnapshot -DprocessDependencies=false versions:commit', deployerId: "deployer"
                 rtMavenRun pom: 'pom.xml', goals: 'clean install', deployerId: "deployer"
 
                 withCredentials([gitUsernamePassword(credentialsId: 'github')]) {
