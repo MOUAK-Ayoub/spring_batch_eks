@@ -14,7 +14,6 @@ pipeline {
                      pom_version=readMavenPom file: "pom.xml"
                 }
 
-                sh " java -version"
                 sh " mvn -version"
                 echo pom_version
             }
