@@ -7,10 +7,10 @@ pipeline {
     stages {
 
          stage('env variables') {
-
-            steps {
                 artifactory_url="http://localhost:8082/artifactory/"
                 pom_version=readMavenPom file: pom.xml
+            steps {
+
                 sh " java -version"
                 sh " mvn -version"
                 sh " echo ${pom_version}"
@@ -37,8 +37,8 @@ pipeline {
         }
 
        stage('Build docker image'){
+           pom_version= readMavenPom file: pom.xml
            steps{
-                pom_version= readMavenPom file: pom.xml
                 sh """
                     podman build -t demo:${pom_version} .
                     podman tag demo:${pom_version} docker.io/ayoubmouak/demo:${pom_version}
@@ -48,9 +48,10 @@ pipeline {
        }
 
        stage('Helm install'){
+           value_yaml = readYaml text: k8s/demo/values.yaml
+           value_yaml.deployment.image.version=pom_version
            steps{
-                value_yaml = readYaml text: k8s/demo/values.yaml
-                value_yaml.deployment.image.version=pom_version
+
                 sh """
                   git add .
                   git commit -m "commit helmrelease with next snapshot"
